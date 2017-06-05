@@ -1,0 +1,15 @@
+#######################################
+# Syntax Coloring Map For L298N
+#######################################
+
+L298N	KEYWORD1
+
+setSpeed	KEYWORD2
+getSpeed	KEYWORD2
+forward	KEYWORD2
+forwardFor	KEYWORD2
+backward	KEYWORD2
+backwardFor	KEYWORD2
+stop	KEYWORD2
+reset	KEYWORD2
+isMoving	KEYWORD2
