@@ -2,7 +2,15 @@
 # Syntax Coloring Map For L298N
 #######################################
 
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
 L298N	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
 
 setSpeed	KEYWORD2
 getSpeed	KEYWORD2
@@ -13,3 +21,11 @@ backwardFor	KEYWORD2
 stop	KEYWORD2
 reset	KEYWORD2
 isMoving	KEYWORD2
+
+#######################################
+# Instances (KEYWORD2)
+#######################################
+
+#######################################
+# Constants (LITERAL1)
+#######################################
