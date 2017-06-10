@@ -8,6 +8,11 @@ typedef void (*CallBackFunction) ();
 
 class L298N{
    public:
+      typedef enum
+      {
+            FORWARD  = 0,
+            BACKWARD = 1
+      } Direction;
       L298N(uint8_t pinEnable, uint8_t pinIN1, uint8_t pinIN2);
       void setSpeed(unsigned short pwmVal);
       unsigned short getSpeed();
@@ -17,6 +22,7 @@ class L298N{
       void backward();
       void backwardFor(unsigned long delay, CallBackFunction callback);
       void backwardFor(unsigned long delay);
+      void run(uint8_t direction);
       void stop();
       void reset();
       boolean isMoving();

@@ -18,14 +18,14 @@ forward	KEYWORD2
 forwardFor	KEYWORD2
 backward	KEYWORD2
 backwardFor	KEYWORD2
+run	KEYWORD2
 stop	KEYWORD2
 reset	KEYWORD2
 isMoving	KEYWORD2
 
 #######################################
-# Instances (KEYWORD2)
-#######################################
-
-#######################################
 # Constants (LITERAL1)
 #######################################
+
+BACKWARD	LITERAL1
+FORWARD	LITERAL1

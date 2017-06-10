@@ -92,6 +92,17 @@ void L298N::backwardFor(unsigned long delay){
   this->backwardFor(delay, fakeCallback);
 }
 
+void L298N::run(uint8_t direction){
+  switch(direction){
+    case BACKWARD:
+      this->backward();
+    break;
+    case FORWARD:
+      this->forward();
+    break;
+  }
+}
+
 void L298N::stop(){
   digitalWrite(_pinIN1, LOW);
   digitalWrite(_pinIN2, LOW);
