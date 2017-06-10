@@ -22,4 +22,24 @@ L298N myMotor(EN, IN1, IN2);
 * EN = is the Arduino pin (required PWM pin) connected to the pin Enable of the module
 * IN1 and IN2 are two digital pin connected to IN1 and IN2 of the module
 
-*writing documentation stay tuned*
+## Methods
+| Method | Params | Description
+| :----- | :---------- | :------
+|**setSpeed**|unsigned short pwmVal| Used to set the pwm value used to determine the motor speed. Value from 0 to 255.
+|**getSpeed**|none| Get the speed previously setted.
+|**forward**|none| Run motor in forward direction (may depends by wires).
+|**forwardFor**|unsigned long delay| Run motor in forward direction for a time specified by delay.
+|**forwardFor**|unsigned long delay, CallBackFunction callback| Run motor in forward direction for a time specified by delay, after moving execute the callback function.
+|**backward**|none| Run motor in backward direction (may depends by wires).
+|**backwardFor**|unsigned long delay| Run motor in backward direction for a time specified by delay.
+|**backwardFor**|unsigned long delay, CallBackFunction callback| Run motor in backward direction for a time specified by delay, after moving execute the callback function.
+|**run**|uint8_t direction| Move motor. To specify the direction use *L298N::FORWARD* or *L298N::BACKWARD*. 
+|**stop**|none| Stop the motor.
+|**reset**|none| Used to re-enable motor movements after the use of forwardFor and backwardFor methods.
+|**isMoving**|none| Returns a boolean indicating if motor is running or not.
+
+## Donations
+Coffees are accepted!
+:coffee: [PayPal Donations Here](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DUNFGKA32BFGE) :coffee:
+
+*writing examples stay tuned*
