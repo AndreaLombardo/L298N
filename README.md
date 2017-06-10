@@ -40,6 +40,8 @@ L298N myMotor(EN, IN1, IN2);
 
 ## Donations
 Coffees are accepted!
-:coffee: [PayPal Donations Here](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=DUNFGKA32BFGE) :coffee:
+:coffee: [PayPal Donations Here](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=GRNEA99RCC3U4) :coffee:
+
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=GRNEA99RCC3U4)
 
 *writing examples stay tuned*
