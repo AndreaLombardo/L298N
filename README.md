@@ -15,7 +15,7 @@ or directly writing the include statement in your code:
 #include <L298N.h>
 ```
 ## INSTANCE THE MODULE
-To drive a motor the first think is to create an istance of the library.
+To drive a motor the first think is to create an instance of the library.
 ```
 L298N myMotor(EN, IN1, IN2);
 ```
@@ -26,7 +26,7 @@ L298N myMotor(EN, IN1, IN2);
 | Method | Params | Description
 | :----- | :---------- | :------
 |**setSpeed**|unsigned short pwmVal| Used to set the pwm value used to determine the motor speed. Value from 0 to 255.
-|**getSpeed**|none| Get the speed previously setted.
+|**getSpeed**|none| Get the speed previously set.
 |**forward**|none| Run motor in forward direction (may depends by wires).
 |**forwardFor**|unsigned long delay| Run motor in forward direction for a time specified by delay.
 |**forwardFor**|unsigned long delay, CallBackFunction callback| Run motor in forward direction for a time specified by delay, after moving execute the callback function.
