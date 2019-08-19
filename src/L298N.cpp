@@ -8,7 +8,19 @@
 
 typedef void (*CallBackFunction) ();
 
+//pinIN1 and pinIN2 should be pwm pins and enable pin in L298N should be connected to HIGH
+L298N::L298N(uint8_t pinIN1, uint8_t pinIN2){
+  _withoutEnablemode = true;
+  _pinIN1 = pinIN1;
+  _pinIN2 = pinIN2;
+  _pwmVal = 100;
+  _isMoving = false;
+  _canMove = true;
+  _lastMs = 0;
+}
+
 L298N::L298N(uint8_t pinEnable, uint8_t pinIN1, uint8_t pinIN2){
+  _withoutEnablemode = false;
   _pinEnable = pinEnable;
   _pinIN1 = pinIN1;
   _pinIN2 = pinIN2;
@@ -24,6 +36,7 @@ L298N::L298N(uint8_t pinEnable, uint8_t pinIN1, uint8_t pinIN2){
 
 
 void L298N::setSpeed(unsigned short pwmVal){
+  if (pwmVal>255) pwmVal = 255;    //limit pwm value to 255
   _pwmVal = pwmVal;
 }
 
@@ -32,11 +45,16 @@ unsigned short L298N::getSpeed(){
 }
 
 void L298N::forward(){
-  digitalWrite(_pinIN1, HIGH);
-  digitalWrite(_pinIN2, LOW);
-
-  analogWrite(_pinEnable, _pwmVal);
-
+  if (!_withoutEnablemode){
+    digitalWrite(_pinIN1, HIGH);
+    digitalWrite(_pinIN2, LOW);
+    
+    analogWrite(_pinEnable, _pwmVal);
+  }
+  else{
+    analogWrite(_pinIN1, _pwmVal);
+    analogWrite(_pinIN2, 0);
+  }
   _isMoving = true;
 }
 
@@ -63,10 +81,16 @@ void L298N::forwardFor(unsigned long delay){
 
 
 void L298N::backward(){
-  digitalWrite(_pinIN1, LOW);
-  digitalWrite(_pinIN2, HIGH);
+  if (!_withoutEnablemode){
+    digitalWrite(_pinIN1, LOW);
+    digitalWrite(_pinIN2, HIGH);
 
-  analogWrite(_pinEnable, _pwmVal);
+    analogWrite(_pinEnable, _pwmVal);
+  }
+  else{
+    analogWrite(_pinIN1, 0);
+    analogWrite(_pinIN2, _pwmVal);
+  }
 
   _isMoving = true;
 }
@@ -104,11 +128,17 @@ void L298N::run(uint8_t direction){
 }
 
 void L298N::stop(){
-  digitalWrite(_pinIN1, LOW);
-  digitalWrite(_pinIN2, LOW);
+  if (!_withoutEnablemode){
+    digitalWrite(_pinIN1, LOW);
+    digitalWrite(_pinIN2, LOW);
 
-  analogWrite(_pinEnable, 255);
-  
+    analogWrite(_pinEnable, 255);
+  }
+  else{
+    analogWrite(_pinIN1, 0);
+    analogWrite(_pinIN2, 0);
+  }
+
   _isMoving = false;
 }
 
