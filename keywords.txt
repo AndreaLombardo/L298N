@@ -1,31 +1,64 @@
-#######################################
-# Syntax Coloring Map For L298N
-#######################################
+#########################################
+# Syntax Coloring Map For L298N, L298NX2
+#########################################
 
-#######################################
+#########################################
 # Datatypes (KEYWORD1)
-#######################################
+#########################################
 
-L298N	KEYWORD1
+L298N			KEYWORD1
+L298NX2	 		KEYWORD1
 
-#######################################
+#########################################
 # Methods and Functions (KEYWORD2)
-#######################################
+#########################################
 
-setSpeed	KEYWORD2
-getSpeed	KEYWORD2
-forward	KEYWORD2
-forwardFor	KEYWORD2
-backward	KEYWORD2
-backwardFor	KEYWORD2
-run	KEYWORD2
-stop	KEYWORD2
-reset	KEYWORD2
-isMoving	KEYWORD2
+setSpeed		KEYWORD2
+getSpeed		KEYWORD2
+forward			KEYWORD2
+forwardFor		KEYWORD2
+backward		KEYWORD2
+backwardFor		KEYWORD2
+run				KEYWORD2
+runFor			KEYWORD2
+stop			KEYWORD2
+reset			KEYWORD2
+isMoving		KEYWORD2
 
-#######################################
+setSpeedA		KEYWORD2
+getSpeedA		KEYWORD2
+forwardA		KEYWORD2
+forwardForA		KEYWORD2
+forwardForA		KEYWORD2
+backwardA		KEYWORD2
+backwardForA	KEYWORD2
+backwardForA	KEYWORD2
+runA			KEYWORD2
+runForA			KEYWORD2
+stopA			KEYWORD2
+resetA			KEYWORD2
+isMovingA		KEYWORD2
+getDirectionA	KEYWORD2
+
+setSpeedB		KEYWORD2
+getSpeedB		KEYWORD2
+forwardB		KEYWORD2
+forwardForB		KEYWORD2
+forwardForB		KEYWORD2
+backwardB		KEYWORD2
+backwardForB	KEYWORD2
+backwardForB	KEYWORD2
+runB			KEYWORD2
+runForB			KEYWORD2
+stopB			KEYWORD2
+resetB			KEYWORD2
+isMovingB		KEYWORD2
+getDirectionB	KEYWORD2
+
+#########################################
 # Constants (LITERAL1)
-#######################################
+#########################################
 
-BACKWARD	LITERAL1
-FORWARD	LITERAL1
+BACKWARD		LITERAL1
+FORWARD			LITERAL1
+STOP			LITERAL1

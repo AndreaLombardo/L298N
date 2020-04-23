@@ -3,15 +3,13 @@ Author  : Andrea Lombardo
 Site    : https://www.lombardoandrea.com
 Source  : https://github.com/AndreaLombardo/L298N/
 
-Here you can see how to work in a common configuration. 
+Here you can see how to work in a common configuration without the needed of Enable pin. 
 
-Speed range go from 0 to 255, default is 100.
-Use setSpeed(speed) to change.
+Make sure your module has a jumper in place.
 
-Sometimes at lower speed motors seems not running.
-It's normal, may depends by motor and power supply.
+When L298N has a jumper instead of Enable pin, the speed is always 255.
 
-Wiring schema in file "L298N - Schema_with_EN_pin.png"
+Wiring schema in file "L298N - Schema_without_EN_pin.png"
 */
 
 // Include the library
@@ -20,10 +18,9 @@ Wiring schema in file "L298N - Schema_with_EN_pin.png"
 // Pin definition
 const unsigned int IN1 = 7;
 const unsigned int IN2 = 8;
-const unsigned int EN = 9;
 
 // Create one motor instance
-L298N motor(EN, IN1, IN2);
+L298N motor(IN1, IN2);
 
 void setup()
 {
@@ -35,9 +32,6 @@ void setup()
   {
     //do nothing
   }
-
-  // Set initial speed
-  motor.setSpeed(70);
 }
 
 void loop()
@@ -50,7 +44,8 @@ void loop()
   // motor.run(L298N::FORWARD);
 
   //print the motor satus in the serial monitor
-  printSomeInfo();
+  Serial.print("Is moving = ");
+  Serial.println(motor.isMoving());
 
   delay(3000);
 
@@ -60,10 +55,8 @@ void loop()
   // Alternative method:
   // motor.run(L298N::STOP);
 
-  printSomeInfo();
-
-  // Change speed
-  motor.setSpeed(255);
+  Serial.print("Is moving = ");
+  Serial.println(motor.isMoving());
 
   delay(3000);
 
@@ -73,27 +66,16 @@ void loop()
   // Alternative method:
   // motor.run(L298N::BACKWARD);
 
-  printSomeInfo();
-
-  motor.setSpeed(120);
+  Serial.print("Is moving = ");
+  Serial.println(motor.isMoving());
 
   delay(3000);
 
   // Stop
   motor.stop();
 
-  printSomeInfo();
+  Serial.print("Is moving = ");
+  Serial.println(motor.isMoving());
 
   delay(3000);
-}
-
-/*
-Print some informations in Serial Monitor
-*/
-void printSomeInfo()
-{
-  Serial.print("Motor is moving = ");
-  Serial.print(motor.isMoving());
-  Serial.print(" at speed = ");
-  Serial.println(motor.getSpeed());
 }

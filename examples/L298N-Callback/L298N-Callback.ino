@@ -1,42 +1,78 @@
+/*
+Author  : Andrea Lombardo
+Site    : https://www.lombardoandrea.com
+Source  : https://github.com/AndreaLombardo/L298N/
+
+Here you can see how to work with callback option.
+
+Every five seconds callback function is called and encreasing the speed.
+When maximum speed is reached then starts again from zero.
+
+In the meaning time your loop cicle is never bloked.
+
+Speed range go from 0 to 255, default is 100.
+Use setSpeed(speed) to change.
+
+Sometimes at lower speed motors seems not running.
+It's normal, may depends by motor and power supply.
+
+Wiring schema in file "L298N - Schema_with_EN_pin.png"
+*/
+
+// Include the library
 #include <L298N.h>
 
-//pin definition
-#define EN 9
-#define IN1 8
-#define IN2 7
+// Pin definition
+const unsigned int IN1 = 7;
+const unsigned int IN2 = 8;
+const unsigned int EN = 9;
 
-//create a motor instance
+// Create one motor instance
 L298N motor(EN, IN1, IN2);
 
-//initial speed
+// Initial speed
 unsigned short theSpeed = 0;
 
-void setup() {
-
-  //set the initial speed
+void setup()
+{
+  // Set initial speed
   motor.setSpeed(theSpeed);
-
 }
 
-void loop() {
-
-  //move motor for 5 seconds and then execute the callback function
+void loop()
+{
+  // Move motor for 5 seconds and then execute the callback function
+  // Easy way
   motor.forwardFor(5000, callback);
 
+  // More flexible way
+  // motor.runFor(5000, L298N::FORWARD, callback);
 }
 
-void callback() {
+/*
+Each time the callback function is called increase the speed of the motor or reset to 0.
+This function can be named with any name. 
+*/
+void callback()
+{
 
-  //each time the callback function is called increase the speed of the motor or reset to 0
-  if (theSpeed <= 255) {
+  // If speed is over 255 then encrease
+  if (theSpeed <= 255)
+  {
     theSpeed += 25;
-  } else {
+  }
+  else
+  {
     theSpeed = 0;
   }
 
-  //re-enable motor movements
+  /*
+  Each time a callback function is called
+  the motor is placed in "don't move" status
+  To restore it's capability use reset() method.
+  */
   motor.reset();
-  //set the new speed
-  motor.setSpeed(theSpeed);
 
+  // Set the new speed
+  motor.setSpeed(theSpeed);
 }

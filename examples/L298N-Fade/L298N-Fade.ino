@@ -3,7 +3,7 @@ Author  : Andrea Lombardo
 Site    : https://www.lombardoandrea.com
 Source  : https://github.com/AndreaLombardo/L298N/
 
-Here you can see how to work in a common configuration. 
+Based on Arduino Basic Fade example.
 
 Speed range go from 0 to 255, default is 100.
 Use setSpeed(speed) to change.
@@ -25,6 +25,9 @@ const unsigned int EN = 9;
 // Create one motor instance
 L298N motor(EN, IN1, IN2);
 
+int speedness = 0;
+int speedAmount = 1;
+
 void setup()
 {
   // Used to display information
@@ -35,15 +38,14 @@ void setup()
   {
     //do nothing
   }
-
-  // Set initial speed
-  motor.setSpeed(70);
 }
 
 void loop()
 {
+  // Apply faded speed to both motors
+  motor.setSpeed(speedness);
 
-  // Tell the motor to go forward (may depend by your wiring)
+  // Tell motor A to go forward (may depend by your wiring)
   motor.forward();
 
   // Alternative method:
@@ -52,39 +54,17 @@ void loop()
   //print the motor satus in the serial monitor
   printSomeInfo();
 
-  delay(3000);
+  // Change the "speedness" for next time through the loop:
+  speedness = speedness + speedAmount;
 
-  // Stop
-  motor.stop();
+  // Reverse the direction of the fading at the ends of the fade:
+  if (speedness <= 0 || speedness >= 255)
+  {
+    speedAmount = -speedAmount;
+  }
 
-  // Alternative method:
-  // motor.run(L298N::STOP);
-
-  printSomeInfo();
-
-  // Change speed
-  motor.setSpeed(255);
-
-  delay(3000);
-
-  // Tell the motor to go back (may depend by your wiring)
-  motor.backward();
-
-  // Alternative method:
-  // motor.run(L298N::BACKWARD);
-
-  printSomeInfo();
-
-  motor.setSpeed(120);
-
-  delay(3000);
-
-  // Stop
-  motor.stop();
-
-  printSomeInfo();
-
-  delay(3000);
+  // Wait for 30 milliseconds to see the dimming effect
+  delay(30);
 }
 
 /*
@@ -93,7 +73,7 @@ Print some informations in Serial Monitor
 void printSomeInfo()
 {
   Serial.print("Motor is moving = ");
-  Serial.print(motor.isMoving());
+  Serial.print(motor.isMoving() ? "YES" : "NO");
   Serial.print(" at speed = ");
   Serial.println(motor.getSpeed());
 }
