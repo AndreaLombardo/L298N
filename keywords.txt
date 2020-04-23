@@ -24,6 +24,7 @@ runFor			KEYWORD2
 stop			KEYWORD2
 reset			KEYWORD2
 isMoving		KEYWORD2
+getDirection	KEYWORD2
 
 setSpeedA		KEYWORD2
 getSpeedA		KEYWORD2

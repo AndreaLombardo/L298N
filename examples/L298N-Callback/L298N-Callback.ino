@@ -5,10 +5,10 @@ Source  : https://github.com/AndreaLombardo/L298N/
 
 Here you can see how to work with callback option.
 
-Every five seconds callback function is called and encreasing the speed.
+Every five seconds callback function is called and increasing the speed.
 When maximum speed is reached then starts again from zero.
 
-In the meaning time your loop cicle is never bloked.
+In the meaning time your loop cycle is never blocked.
 
 Speed range go from 0 to 255, default is 100.
 Use setSpeed(speed) to change.

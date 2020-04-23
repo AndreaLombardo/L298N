@@ -49,7 +49,7 @@ void loop()
   // Alternative method:
   // motor.run(L298N::FORWARD);
 
-  //print the motor satus in the serial monitor
+  //print the motor status in the serial monitor
   printSomeInfo();
 
   delay(3000);
