@@ -63,7 +63,7 @@ public:
    void backward();
    void backwardFor(unsigned long delay, CallBackFunction callback);
    void backwardFor(unsigned long delay);
-   void run(uint8_t direction);
+   void run(L298N::Direction direction);
    void runFor(unsigned long delay, L298N::Direction direction);
    void runFor(unsigned long delay, L298N::Direction direction, CallBackFunction callback);
    void stop();

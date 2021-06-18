@@ -255,7 +255,7 @@ void L298NX2::backward()
   _motorB.backward();
 }
 
-void L298NX2::run(uint8_t direction)
+void L298NX2::run(L298N::Direction direction)
 {
   _motorA.run(direction);
   _motorB.run(direction);
