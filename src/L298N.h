@@ -33,6 +33,11 @@ public:
    boolean isMoving();
    Direction getDirection();
 
+protected:
+   virtual void pinMode(uint8_t pin, uint8_t mode, bool digitalPin = true);
+   virtual void analogWrite(uint8_t pin, int value);
+   virtual void digitalWrite(uint8_t pin, uint8_t value);
+
 private:
    byte _pinEnable;
    byte _pinIN1;

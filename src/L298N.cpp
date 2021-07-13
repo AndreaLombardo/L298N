@@ -19,9 +19,9 @@ L298N::L298N(uint8_t pinEnable, uint8_t pinIN1, uint8_t pinIN2)
   _lastMs = 0;
   _direction = STOP;
 
-  pinMode(_pinEnable, OUTPUT);
-  pinMode(_pinIN1, OUTPUT);
-  pinMode(_pinIN2, OUTPUT);
+  this->pinMode(_pinEnable, OUTPUT);
+  this->pinMode(_pinIN1, OUTPUT);
+  this->pinMode(_pinIN2, OUTPUT);
 }
 
 L298N::L298N(uint8_t pinIN1, uint8_t pinIN2)
@@ -35,8 +35,8 @@ L298N::L298N(uint8_t pinIN1, uint8_t pinIN2)
   _lastMs = 0;
   _direction = STOP;
 
-  pinMode(_pinIN1, OUTPUT);
-  pinMode(_pinIN2, OUTPUT);
+  this->pinMode(_pinIN1, OUTPUT);
+  this->pinMode(_pinIN2, OUTPUT);
 }
 
 void L298N::setSpeed(unsigned short pwmVal)
@@ -51,10 +51,10 @@ unsigned short L298N::getSpeed()
 
 void L298N::forward()
 {
-  digitalWrite(_pinIN1, HIGH);
-  digitalWrite(_pinIN2, LOW);
+  this->digitalWrite(_pinIN1, HIGH);
+  this->digitalWrite(_pinIN2, LOW);
 
-  analogWrite(_pinEnable, _pwmVal);
+  this->analogWrite(_pinEnable, _pwmVal);
 
   _direction = FORWARD;
   _isMoving = true;
@@ -62,10 +62,10 @@ void L298N::forward()
 
 void L298N::backward()
 {
-  digitalWrite(_pinIN1, LOW);
-  digitalWrite(_pinIN2, HIGH);
+  this->digitalWrite(_pinIN1, LOW);
+  this->digitalWrite(_pinIN2, HIGH);
 
-  analogWrite(_pinEnable, _pwmVal);
+  this->analogWrite(_pinEnable, _pwmVal);
 
   _direction = BACKWARD;
   _isMoving = true;
@@ -148,10 +148,10 @@ void L298N::backwardFor(unsigned long delay)
 
 void L298N::stop()
 {
-  digitalWrite(_pinIN1, LOW);
-  digitalWrite(_pinIN2, LOW);
+  this->digitalWrite(_pinIN1, LOW);
+  this->digitalWrite(_pinIN2, LOW);
 
-  analogWrite(_pinEnable, 255);
+  this->analogWrite(_pinEnable, 255);
 
   _direction = STOP;
   _isMoving = false;
@@ -170,6 +170,22 @@ boolean L298N::isMoving()
 L298N::Direction L298N::getDirection()
 {
   return _direction;
+}
+
+void L298N::pinMode(uint8_t pin, uint8_t mode, bool digitalPin)
+{
+  (void) digitalPin;
+  pinMode(pin, mode);
+}
+
+void L298N::analogWrite(uint8_t pin, int value)
+{
+  analogWrite(pin, value);
+}
+
+void L298N::digitalWrite(uint8_t pin, uint8_t value)
+{
+  digitalWrite(pin, value);
 }
 
 void L298N::fakeCallback()
