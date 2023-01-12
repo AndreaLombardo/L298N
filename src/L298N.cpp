@@ -46,7 +46,11 @@ void L298N::setSpeed(unsigned short pwmVal)
 
 unsigned short L298N::getSpeed()
 {
-  return _pwmVal;
+  if(_isMoving) {
+    return _pwmVal;
+  } else {
+    return 0; 
+  }
 }
 
 void L298N::forward()
