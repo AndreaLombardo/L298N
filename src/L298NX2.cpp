@@ -56,7 +56,7 @@ void L298NX2::setSpeedA(unsigned short pwmVal)
 
 unsigned short L298NX2::getSpeedA()
 {
-  return _motorA.getSpeed();
+  return _motorA.isMoving() ? _motorA.getSpeed() : 0;
 }
 
 void L298NX2::forwardA()
@@ -126,24 +126,6 @@ L298N::Direction L298NX2::getDirectionA()
   return _motorA.getDirection();
 }
 
-/*
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-*/
-
 //Motor B
 void L298NX2::setSpeedB(unsigned short pwmVal)
 {
@@ -152,7 +134,7 @@ void L298NX2::setSpeedB(unsigned short pwmVal)
 
 unsigned short L298NX2::getSpeedB()
 {
-  return _motorB.getSpeed();
+  return _motorB.isMoving() ? _motorB.getSpeed() : 0;
 }
 
 void L298NX2::forwardB()
@@ -218,24 +200,6 @@ L298N::Direction L298NX2::getDirectionB()
   return _motorB.getDirection();
 }
 
-/*
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-*/
 // Both
 void L298NX2::setSpeed(unsigned short pwmVal)
 {
