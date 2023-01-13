@@ -28,21 +28,18 @@ L298N motor(EN, IN1, IN2);
 int speedness = 0;
 int speedAmount = 1;
 
-void setup()
-{
+void setup() {
   // Used to display information
   Serial.begin(9600);
 
   // Wait for Serial Monitor to be opened
-  while (!Serial)
-  {
-    //do nothing
+  while (!Serial) {
+    // do nothing
   }
 }
 
-void loop()
-{
-  // Apply faded speed to both motors
+void loop() {
+  // Apply faded speed
   motor.setSpeed(speedness);
 
   // Tell motor A to go forward (may depend by your wiring)
@@ -51,15 +48,14 @@ void loop()
   // Alternative method:
   // motor.run(L298N::FORWARD);
 
-  //print the motor status in the serial monitor
+  // print the motor status in the serial monitor
   printSomeInfo();
 
   // Change the "speedness" for next time through the loop:
   speedness = speedness + speedAmount;
 
   // Reverse the direction of the fading at the ends of the fade:
-  if (speedness <= 0 || speedness >= 255)
-  {
+  if (speedness <= 0 || speedness >= 255) {
     speedAmount = -speedAmount;
   }
 
@@ -70,8 +66,7 @@ void loop()
 /*
 Print some informations in Serial Monitor
 */
-void printSomeInfo()
-{
+void printSomeInfo() {
   Serial.print("Motor is moving = ");
   Serial.print(motor.isMoving() ? "YES" : "NO");
   Serial.print(" at speed = ");
