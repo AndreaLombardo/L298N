@@ -153,7 +153,6 @@ void L298N::setVelocity(int velocity){
   } else {
     this->stop();
   }
-
 }
 
 void L298N::accelerate(int acceleration) {
