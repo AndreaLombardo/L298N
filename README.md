@@ -1,3 +1,16 @@
+# Explanation
+
+The library is forked from [L298n](https://github.com/AndreaLombardo/L298N).
+The original library is designed for Arduino board, using `analogWrite`, which may cause some problem on ESP32.
+Using [ESP32_AnalogWrite](https://github.com/erropix/ESP32_AnalogWrite) or [AnalogWrite_ESP32](https://github.com/pablomarquez76/AnalogWrite_ESP32) can overwrite `ledcWrite` of ESP32 to `analogWrite`.
+As [pablomarquez76](https://github.com/pablomarquez76/AnalogWrite_ESP32/issues/6) saind, ESP32 has supported `analogWrite` after 2.0.11. The official document is [at here](https://docs.espressif.com/projects/arduino-esp32/en/latest/api/ledc.html?highlight=analogWrite#analogwrite).The resolution is form 0 to 255, testing normal. So nothing needs change.
+
+I added a method to get input from -255 to 255 to control the motor. It is for easier direction control.
+
+I tested it with PID library. Sometimes PID always output 0. Sometimes it works. I didn't find the reason. It might because ESP32Encoder or this repo use the same timer with PID. I am not sure. Be careful.
+
+The below is original readme.
+
 # L298N Library
 
 An easy to use L298N library to control DC Motors with Arduino.
@@ -14,12 +27,6 @@ but it stands for a double implementation of L298N library.
 ## INSTALL THE LIBRARY
 
 Download this repository as a .zip file and from the Arduino IDE go to _Sketch -> Include library -> Add .ZIP Library_
-
-## ESP32 Support
-
-The original library is for Arduino board, using `analogWrite`, which may cause some problem on ESP32.  
-Using [ESP32_AnalogWrite](https://github.com/erropix/ESP32_AnalogWrite) or [AnalogWrite_ESP32](https://github.com/pablomarquez76/AnalogWrite_ESP32) can overwrite `ledcWrite` of ESP32 to `analogWrite`.
-As [pablomarquez76](https://github.com/pablomarquez76/AnalogWrite_ESP32/issues/6) saind, ESP32 has supported `analogWrite` after 2.0.11. The official document is [at here](https://docs.espressif.com/projects/arduino-esp32/en/latest/api/ledc.html?highlight=analogWrite#analogwrite).The resolution is form 0 to 255, testing normal. So nothing needs to be changed and it works well on ESP32.
 
 ## IMPORT
 
