@@ -143,7 +143,16 @@ void L298N::reset() {
   _canMove = true;
 }
 
+// the velocity is a number between -255 and 255
+// positive values are for forward movements
+// negative values are for backward movements
 void L298N::setVelocity(int velocity){
+  if (velocity > 255) {
+    velocity = 255;
+  } else if (velocity < -255) {
+    velocity = -255;
+  }
+
   if (velocity > 0) {
     this->setSpeed((unsigned short)velocity);
     this->forward();
@@ -155,6 +164,9 @@ void L298N::setVelocity(int velocity){
   }
 }
 
+// the acceleration can be positive or negative
+// negative values does not mean deceleration
+// it means the direction of the acceleration is negative
 void L298N::accelerate(int acceleration) {
   int velocity = this->getSpeed();
   if (_direction = BACKWARD) {
