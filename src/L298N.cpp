@@ -143,17 +143,31 @@ void L298N::reset() {
   _canMove = true;
 }
 
-void L298N::control(int speed){
-  if (speed > 0) {
-    this->setSpeed(speed);
+void L298N::setVelocity(int velocity){
+  if (velocity > 0) {
+    this->setSpeed((unsigned short)velocity);
     this->forward();
-  } else if (speed < 0) {
-    this->setSpeed(-speed);
+  } else if (velocity < 0) {
+    this->setSpeed((unsigned short)(-velocity));
     this->backward();
   } else {
     this->stop();
   }
 
+}
+
+void L298N::accelerate(int acceleration) {
+  int velocity = this->getSpeed();
+  if (_direction = BACKWARD) {
+    velocity = -velocity;
+  }
+  velocity += acceleration;
+  if (velocity > 255) {
+    velocity = 255;
+  } else if (velocity < -255) {
+    velocity = -255;
+  }
+  this->setVelocity(velocity);
 }
 
 boolean L298N::isMoving() {
