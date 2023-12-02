@@ -169,7 +169,7 @@ void L298N::setVelocity(int velocity){
 // it means the direction of the acceleration is negative
 void L298N::accelerate(int acceleration) {
   int velocity = this->getSpeed();
-  if (_direction = BACKWARD) {
+  if (_direction == BACKWARD) {
     velocity = -velocity;
   }
   velocity += acceleration;
