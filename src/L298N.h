@@ -30,6 +30,8 @@ public:
    void runFor(unsigned long delay, L298N::Direction direction, CallBackFunction callback);
    void stop();
    void reset();
+   void setVelocity(int velocity);
+   void accelerate(int acceleration);
    boolean isMoving();
    Direction getDirection();
 
